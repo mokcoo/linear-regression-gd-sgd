@@ -16,7 +16,7 @@ To this end, in ```Problem5.py```, fill in the function
 ```python 
 bgd_l2(data, y, w, eta, delta, lam, num_iter)
 ``` 
-where ```data``` is a two dimensional numpy array with each row being a feature vector, y is a one-dimensional numpy array of target values, w is a one-dimensional numpy array corresponding to the weight vector, eta is the learning rate, delta and lam are parameters of the objective function. This function should return new weight vector, history of the value of objective function after each iteration (python list).
+where ```data``` is a two dimensional numpy array with each row being a feature vector, ```y``` is a one-dimensional numpy array of target values, ```w``` is a one-dimensional numpy array corresponding to the weight vector, ```eta``` is the learning rate, ```delta``` and ```lam``` are parameters of the objective function. This function should return new weight vector, history of the value of objective function after each iteration (python list).
 
 Run this function for the following settings and plot the history of objective function (you should expect a monotonically decreasing function over iteration number):
 - η = 0.05, δ = 0.1, λ = 0.001, num_iter = 50 
