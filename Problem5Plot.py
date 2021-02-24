@@ -2,6 +2,26 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+def bgd_plot(data, y, w, eta, delta, lam, num_iter):
+    w, f = bgd_l2(data, y, w, eta, delta, lam, num_iter)
+    plt.plot(f)
+    plt.xlabel('Number of iterations: ')
+    plt.ylabel('History of objective function: ')
+    plt.show()
+
+
 if __name__ == '__main__':
-    # Put the code for the plots here, you can use different functions for each
-    # part
+    data = np.load('data.npy')
+    x = data[:, 0]
+    y = data[:, 1]
+
+    bias = np.ones((100,), dtype=int)
+    data2 = np.column_stack((x, bias))
+
+    w = np.array(([0, 0]), dtype=float)
+
+    bgd_plot(data2, y, w, 0.05, 0.1, 0.001, 50)
+    bgd_plot(data2, y, w, 0.1, 0.01, 0.001, 50)
+    bgd_plot(data2, y, w, 0.1, 0, 0.001, 100)
+    bgd_plot(data2, y, w, 0.1, 0, 0, 100)
