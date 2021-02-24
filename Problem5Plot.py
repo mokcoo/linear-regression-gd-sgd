@@ -1,13 +1,14 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+from Problem5 import *
 
 
 def bgd_plot(data, y, w, eta, delta, lam, num_iter):
     w, f = bgd_l2(data, y, w, eta, delta, lam, num_iter)
     plt.plot(f)
-    plt.xlabel('Number of iterations: ')
-    plt.ylabel('History of objective function: ')
+    plt.xlabel('Number of iterations')
+    plt.ylabel('Objective function history')
     plt.show()
 
 
