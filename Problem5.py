@@ -54,18 +54,18 @@ def sgd_l2(data, y, w, eta, delta, lam, num_iter, i=-1):
     if (i == -1):
         for j in range(0, num_iter):
             i = random.randint(0, 99)
-            w = sgd_calculate(data, y, w, eta, delta, i, j)
+            w = sgd_calculate(data, y, w, eta, delta, lam, i, j)
             history_fw.append(objective_function(data, y, w, delta)
                               + regularization(w, lam))
     else:
-        w = sgd_calculate(data, y, w, eta, delta, i, 0)
+        w = sgd_calculate(data, y, w, eta, delta, lam, i, 0)
         history_fw.append(objective_function(data, y, w, delta)
                           + regularization(w, lam))
     new_w = [w[0], w[1]]
     return new_w, history_fw
 
 
-def sgd_calculate(data, y, w, eta, delta, i, j):
+def sgd_calculate(data, y, w, eta, delta, lam, i, j):
     w0_gradient = 0
     w1_gradient = 0
 
