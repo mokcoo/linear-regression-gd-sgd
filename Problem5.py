@@ -50,4 +50,39 @@ def bgd_l2(data, y, w, eta, delta, lam, num_iter):
 
 
 def sgd_l2(data, y, w, eta, delta, lam, num_iter, i=-1):
+    history_fw = []
+    if (i == -1):
+        for j in range(0, num_iter):
+            i = random.randint(0, 99)
+            w = sgd_calculate(data, y, w, eta, delta, i, j)
+            history_fw.append(objective_function(data, y, w, delta)
+                              + regularization(w, lam))
+    else:
+        w = sgd_calculate(data, y, w, eta, delta, i, 0)
+        history_fw.append(objective_function(data, y, w, delta)
+                          + regularization(w, lam))
+    new_w = [w[0], w[1]]
     return new_w, history_fw
+
+
+def sgd_calculate(data, y, w, eta, delta, i, j):
+    w0_gradient = 0
+    w1_gradient = 0
+
+    wx = (w[0] * data[i][0]) + (w[1] * data[i][1])
+    if y[i] >= wx + delta:
+        w0_gradient += -2 * data[i][0] * (y[i] - wx - delta)
+        w1_gradient += -2 * (y[i] - wx - delta)
+    elif abs(y[i] - wx) < delta:
+        w0_gradient += 0
+        w1_gradient += 0
+    elif y[i] <= wx - delta:
+        w0_gradient += -2 * data[i][0] * (y[i] - wx + delta)
+        w1_gradient += -2 * (y[i] - wx + delta)
+    w0_gradient += 2 * lam * w[0]
+    w1_gradient += 2 * lam * w[1]
+
+    w[0] -= ((eta / math.sqrt(j+1)) * w0_gradient)
+    w[1] -= ((eta / math.sqrt(j+1)) * w1_gradient)
+
+    return w
